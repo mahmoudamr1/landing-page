@@ -2,26 +2,665 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+ul{
+      list-style: circle;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+:root {
+  --main-color: #e84596;
+  --main-color-alt: #1787e0;
+  --main-transition: 0.3s;
+  --main-padding-top: 100px;
+  --main-padding-bottom: 100px;
+  --section-background: #ececec;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+height: 10px;
+}
+
+/* لون الخلفية العمودية */
+::-webkit-scrollbar-track {
+
+  background-color: #211407;
+}
+
+/* لون المقبض */
+::-webkit-scrollbar-thumb {
+
+  background-color: var(--main-color);
+  border-radius: 5px;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--main-color);
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
 }
+
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.main-title {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.main-title h2 {
+
+  text-transform: uppercase;
+  margin: 30px auto 15px;
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-size: 30px;
+  width: fit-content;
+  position: relative;
+  z-index: 1;
+  transition: var(--main-transition);
+}
+
+.main-title h2::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.main-title h2:hover::before {
+  animation: .5s go-right linear forwards;
+}
+
+@keyframes go-right {
+
+  50% {
+    left: 0;
+    width: 12px;
+    height: 12px;
+  }
+
+  100% {
+    left: 0;
+    border-radius: 0;
+    width: 51%;
+    height: 100%;
+  }
+
+}
+
+.main-title h2::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.main-title h2:hover {
+  color: white;
+  border: 2px solid white;
+  transition-delay: 0.5s;
+}
+
+.main-title h2:hover::after {
+  animation: .5s go-left linear forwards;
+}
+
+@keyframes go-left {
+
+  50% {
+    right: 0;
+    width: 12px;
+    height: 12px;
+  }
+
+  100% {
+    right: 0;
+    border-radius: 0;
+    width: 51%;
+    height: 100%;
+  }
+}
+
+@media (max-width:613px) {
+  .main-title h2 {
+    font-size: 14px;
+  }
+}
+
+/* sec-1 */
+.sec-1 {
+
+  gap: 10px; 
+  padding-top: 28px;
+}
+
+.image-container img{
+  border-radius: 20px;
+  height: 100%;
+    max-width: 100%;
+    animation: slideInFromTop 1s ease-in-out;
+}
+
+    @keyframes slideInFromTop {
+      0% {
+        transform: translateX(-300px);
+  
+        opacity: 0;
+  
+      }
+  
+      100% {
+        transform: translateX(0);
+  
+        opacity: 1;
+  
+      }
+    }
+
+
+
+.div1-sec-1{
+  display: flex;
+gap: 10px;
+height: 85vh;
+justify-content: space-evenly;
+}
+.small-images-container {
+  display: flex;
+    gap: 10px;
+   
+    flex-direction: column;
+    overflow-y: auto;
+    animation: slideInFromLeft 1s ease-in-out;
+}
+
+        @keyframes slideInFromLeft {
+          0% {
+            transform: translateX(300px);
+    
+            opacity: 0;
+    
+          }
+    
+          100% {
+            transform: translateX(0);
+    
+            opacity: 1;
+    
+          }
+        }
+
+.small-image {
+  border-radius: 8px;
+  background-color: #ebebeb;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+.selected-image {
+  background-color: #f02d34;
+}
+/* 
+.image-container {
+  border-radius: 15px;
+  background-color: #ebebeb1a;
+  width: 400px;
+  height: 400px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+  justify-content: center;
+  padding: 10px;
+} */
+.div1-sec-1{
+  flex-basis: 40%;
+}
+.div2-sec-1{
+  flex-basis: 60%;
+}
+.product-name-1 {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e84596;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.product-name-1 h1{
+  font-size: 30px;
+  padding-bottom: 6px;
+
+}
+
+.div2-sec-1 h3{
+font-size: 43px;
+  font-weight: bold;
+}
+.prices{
+  display: flex;
+  gap: 22px;
+  padding: 14px 0;
+      align-items: center;
+      justify-content: space-between;
+}
+.prices div h4{
+  font-weight: bold;
+  font-size: 20px;
+}
+.prices div h5{
+ text-decoration: line-through;
+color: #777;
+}
+.EXTRA-prices h4 {
+  padding: 6px;
+  background-color: rgb(33 37 41);
+  color: white;
+  border-radius: 7px;
+}
+.div2-sec-1 form div {
+display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  font-size: 20px;
+}
+input#quantity {
+  width: 43px !important;
+}
+.div2-sec-1 form div button{
+
+  padding: 15px 52px;
+    background-color: var(--main-color);
+    
+    margin: 0 auto;
+    border-radius: 10px;
+    transition: .5s;
+    animation: slideInFromTopToBottom 1s ease-in-out;
+}
+
+    @keyframes slideInFromTopToBottom {
+      0% {
+        transform: translateY(-40px);
+  
+        opacity: 0;
+  
+      }
+  
+      100% {
+        transform: translateY(0);
+  
+        opacity: 1;
+  
+      }
+    }
+
+.div2-sec-1 form div button:hover {
+  box-shadow: 0 0 10px #eb0678;
+}
+
+#color option:hover {
+  background-color: inherit;
+}
+
+.sec-2 div ul li {
+    padding: 11px 0;
+animation: slideInFromTop 1s ease-in-out;
+
+}
+.div2-description div h2{
+color: #ff0000;
+  font-weight: bold;
+  padding-left: 6px;
+}
+.div2-description div ul li {
+  padding: 5px;
+      color: #464147;
+}
+.div2-description div {
+
+}
+
+.main-container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -40px;
+  width: 100%;
+  height: 113%;
+  background-color: #ececec;
+  z-index: -1;
+  transform: skewY(-6deg);
+  transform-origin: top left;
+}
+
+.sec-2::before {
+  content: "";
+    position: absolute;
+    left: 0;
+ 
+    width: 100%;
+      height: 105%;
+    background-color: #dadadf;
+    z-index: -1;
+    transform: skewY(-6deg);
+    transform-origin: top left;
+}
+
+.sec-3 div h2{
+font-size: 25px;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+.sec-3 div p{
+font-size: 20px;
+}
+.div2-sec-3 div{
+display: flex;
+flex-direction: column;
+margin: 20px 0 ;
+/* test */
+animation: slideInFromLeft 1s ease-in-out;
+}
+.sec-3{
+  padding-top: 60px !important;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+.div2-sec-3 div div h3 {
+  font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+.div2-sec-3 div div p {
+  color: #615d5d;
+    font-size: 17px;
+}
+.sec-3 video{
+  height: 100vh;
+  width: 100%;
+}
+
+.whatsapp-button {
+position: fixed;
+  bottom: 33px;
+  right: 14px;
+  z-index: 1000;
+}
+
+.whatsapp-button img {
+  width: 60px;
+  /* تحديد عرض الصورة حسب الحاجة */
+  height: auto;
+  /* الارتفاع سيتم تعديله تلقائيًا بناءً على العرض */
+  border-radius: 10px;
+}
+.sec-3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+ 
+  height: 109%;
+  background-color: #c3c3ffb3;
+  z-index: -1;
+  transform: skewY(-6deg);
+  transform-origin: top left;
+}
+
+.sec-6::before {
+  content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+   
+    height: 92%;
+    background-color: #bbbbcdb3;
+    z-index: -1;
+    transform: skewY(-6deg);
+    transform-origin: top left;
+}
+.sec-7 {
+position: fixed;
+  bottom: 0;
+  background-color: black;
+  color: white;
+  width: 100%;
+  /* height: 30px; */
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.sec-7 a{
+  padding: 10px 20px !important;
+    background-color: var(--main-color);
+    border-radius: 11px;
+  }
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width:768px) {
+  
+.product-name-1 h1 {
+    font-size: 22px;
+  
+  }
+
+
+.div2-sec-1 h3 {
+  font-size: 19px;
+
+}
+
+.prices div h4 {
+
+  font-size: 18px;
+}
+
+.EXTRA-prices h4 {
+
+  font-size: 15px !important;
+}
+
+.prices {
+
+  padding: 10px 0;
+
+}
+
+.div2-sec-1 form div {
+
+  padding: 9px 0;
+  font-size: 20px;
+}
+
+.main-container::before {
+
+    height: 155%;
+
+}
+
+.sec-2::before {
+  height: 156%;
+}
+
+.sec-2 div ul li {
+
+  font-size: 18px;
+}
+
+.sec-3 div p {
+  font-size: 18px;
+}
+
+.div2-sec-3 div {
+
+  margin: 10px 0;
+}
+
+.div2-sec-3 {
+  gap: 5px !important;
+}
+
+.sec-3::before {
+    height: 213%;
+}
+
+.sec-3 video {
+  height: 100vh;
+}
+
+.div2-sec-3 div div p {
+
+  font-size: 18px;
+}
+
+.div2-sec-3 div div h3 {
+  font-size: 21px;
+
+}
+
+.sec-6::before {
+  height: 121%;
+}
+
+.whatsapp-button img {
+  width: 45px;
+
+}
+
+
+
+}
+
+
+
+
+@media (max-width:480px) {
+  .product-name-1 h1 {
+      font-size: 16px;
+     
+    }
+.div2-sec-1 h3 {
+  font-size: 16px;
+  
+}
+.prices div h4 {
+
+  font-size: 15px;
+}
+.EXTRA-prices h4 {
+ 
+  font-size: 10px !important;
+}
+
+.prices {
+ 
+  padding: 8px 0;
+
+}
+.div2-sec-1 form div {
+ 
+  padding: 6px 0;
+  font-size: 17px;
+}
+
+.main-container::before {
+
+  height: 143%;
+ 
+}
+
+.sec-2::before {
+height: 164%;
+}
+
+.sec-2 div ul li {
+
+  font-size: 15px;
+}
+
+.sec-3 div p {
+  font-size: 15px;
+}
+
+.div2-sec-3 div {
+ 
+  margin: 8px 0;
+}
+
+.div2-sec-3{
+  gap: 0px !important;
+}
+
+.sec-3::before {
+  height: 207%;
+}
+
+.sec-3 video {
+  height: 90vh;
+}
+.div2-sec-3 div div p {
+
+  font-size: 15px;
+}
+
+.div2-sec-3 div div h3 {
+  font-size: 18px;
+
+}
+
+.sec-6::before {
+      height: 121%;
+}
+
+.whatsapp-button img {
+  width: 45px;
+  
+}
+
+
+}
+

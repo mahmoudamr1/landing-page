@@ -1,113 +1,327 @@
+'use client'
 import Image from 'next/image'
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Home() {
+
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState( false );
+  const scriptURL = 'https://script.google.com/macros/s/AKfycby9SKAP8WdyJCCb75db-943wGCma_rTcSyqP-xRa6r6HgORljYtYzgvgpm8FyI51obz/exec';
+
+  const handleSubmit = async ( e ) => {
+    e.preventDefault();
+    setSubmitButtonDisabled( true );
+
+    const form = e.target;
+    const formData = new FormData( form );
+
+    try {
+      const response = await fetch( scriptURL, {
+        method: 'POST',
+        body: formData,
+      } );
+
+      if ( response.ok ) {
+        alert( 'Success!', response );
+      } else {
+        throw new Error( 'Network response was not ok' );
+      }
+    } catch ( error ) {
+      alert( 'Error!', error.message );
+    }
+
+    setSubmitButtonDisabled( false );
+  };
+
+  
+  const initialFormData = {
+    color: 'black',
+    size: 'xs',
+    quantity: 1,
+  };
+
+  const [formData, setFormData] = useState( initialFormData );
+
+  const handleInputChange = ( e ) => {
+    const { name, value } = e.target;
+    setFormData( {
+      ...formData,
+      [name]: value,
+    } );
+  };
+
+  
+  const [index, setIndex] = useState( 0 );
+
+  const images = [
+    
+    'img2.avif',
+    'img1.avif',
+    'img3.avif',
+    'img4.avif',
+    'img5.avif',
+    'img6.avif',
+    'img7.avif',
+  ];
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div class="whatsapp-button">
+        <a href="https://wa.me/+905515882186" target="_blank">
+          <img src="whatsapp1.png" alt="WhatsApp" />
+        </a>
+      </div>
+
+      <div className='main-container '>
+
+        <div className='product-name-1 container' id='top-1'>
+          <h1>kadın Barbie Oversize Eşofman Takımı</h1>
+</div>
+
+        <div className='sec-1 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
+          <div className='div1-sec-1'>
+          <div className='image-container'>
+            <img src={ images[index] } alt="" />
+          </div>
+          <div className="small-images-container">
+            { images.map( ( image, i ) => (
+              <img
+                src={ image }
+                alt=""
+                className={ i === index ? 'small-image selected-image' : 'small-image' }
+                key={ i }
+                onMouseEnter={ () => setIndex( i ) }
+              />
+            ) ) }
+          </div>
+          </div>
+            
+          <div className='div2-sec-1'>
+            <h3>kadın Barbie Oversize Eşofman Takımı</h3>
+            <div className='prices'>
+              <div> <h4>TRY249.00</h4></div>
+              <div> <h5> TRY599.00</h5></div>
+              <div className='EXTRA-prices'> <h4>EXTRA 40% OFF</h4></div>
+
+            </div>
+
+            {/* <form method="POST" action="YOUR_WEBAPP_URL">
+              <input name="Email" type="email" placeholder="Email" required="" />
+              <input name="Name" type="text" placeholder="Name" required="" />
+              <button type="submit">Send</button>
+            </form> */}
+
+            {/* <form onSubmit={ handleSubmit } id="form">
+              <input name="Email" type="email" placeholder="Email" required="" />
+              <input name="Name" type="text" placeholder="Name" required="" />
+              <button type="submit" id="submit" disabled={ submitButtonDisabled }>
+                Submit
+              </button>
+            </form> */}
+            
+
+            <form  method="POST"
+              action="https://script.google.com/macros/s/AKfycby9SKAP8WdyJCCb75db-943wGCma_rTcSyqP-xRa6r6HgORljYtYzgvgpm8FyI51obz/exec">
+              <div>
+                <label htmlFor="color">Renk:</label>
+                <select
+                  id="color"
+                  name="color"
+                  value={ formData.color }
+                  onChange={ handleInputChange }
+                >
+                  <option value="black" style={ { backgroundColor: 'black' } }>Siyah</option>
+                  <option value="brown" style={ { backgroundColor: 'brown' } }>Kahverengi</option>
+                  <option value="white" style={ { backgroundColor: 'white' } }>Beyaz</option>
+
+
+             
+                </select>
+              </div>
+              <div>
+                <label htmlFor="size">Beden:</label>
+                <select
+                  id="size"
+                  name="size"
+                  value={ formData.size }
+                  onChange={ handleInputChange }
+                >
+                  <option value="xs">XS</option>
+                  <option value="s">S</option>
+                  <option value="m">M</option>
+                  <option value="l">L</option>
+                  <option value="xl">XL</option>
+                  <option value="2xl">2XL</option>
+                  <option value="3xl">3XL</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="quantity">Miktar:</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  min="1"
+                  value={ formData.quantity }
+                  onChange={ handleInputChange }
+                />
+              </div>
+              <div>
+                <button type="submit">Sepete Ekle</button>
+              </div>
+            </form>
+
+            
+          </div>
         </div>
-      </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        <div className='sec-2 container'>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <div className="main-title">
+            <h2>Ürün açıklaması</h2>
+          </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+          <div>
+            <ul>
+              <li>Bu ürün, Kadın Barbie Baskılı Sweatshirt Eşofman Alt-Üst Takımı adıyla tanımlanan, eğlenceli ve şık bir gardırop eklentisidir.</li>
+              <li>Üst kısmı, Barbie logosuna sahip geniş bir baskıya sahip olan rahat bir sweatshirt'ten oluşmaktadır. Alt kısmında ise yumuşak ve esnek bir malzemeden yapılmış rahat bir eşofman bulunmaktadır.</li>
+              <li>Hem sweatshirt, hem de eşofman, cildi tahriş etmeyen, nefes alabilen ve mükemmel bir şekilde oturan yüksek kaliteli bir kumaştan yapılmıştır.</li>
+              <li>Bu set, hem iç mekanlarda rahatlıkla giyilebilir, hem de dışarı çıkarken mükemmel bir seçenek olabilir.</li>
+              <li>Barbie baskısı, bu takımı benzersiz ve şık bir seçim haline getirir. Üstelik, geniş bir beden yelpazesinde mevcuttur, böylece herkes kendi mükemmel uyumunu bulabilir.</li>
+              <li>Makinede yıkanabilir ve kolay bakım gerektirir.</li>
+            </ul>
+          </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+          <div className='div2-description grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-5'>
+            <div>
+              <h2>ÖZELLİKLER</h2>
+              <ul>
+                <li>Türkiye'de üretildi.</li>
+                <li>Siyah, Gri.</li>
+                <li>%100 Pamuk.</li>
+              </ul>
+            </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+            <div>
+              <h2>KOLAY İADE</h2>
+              <ul>
+                <li>Değişim veya para iadesi için 15 gün içinde iade etmeniz yeterlidir.</li>
+              </ul>
+            </div>
+            <div>
+              <h2>kapıda ödeme</h2>
+              <ul>
+                <li>Tahmini işlem süresi: 1-3 iş günü</li>
+              </ul>
+            </div>
+
+</div>
+          
+        </div>
+
+        <div className='sec-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 '>
+          <div> 
+            <h2>Niçin hayperglam büyük beden hoodie?</h2>
+          <p>Ceviz ahşap kart tepsisi, bir yığın Focus kartını mükemmel bir şekilde uyacak şekilde hassas bir şekilde işlenmiştir.</p>
+           
+            <div className='div2-sec-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5' >
+              <div>
+                <div>
+                  <h3>Rahat Tasarım</h3>
+                  <p>Bu ürün, gün boyu konfor ve rahatlık sağlamak için özenle tasarlanmıştır.</p>
+                </div>
+                <div>
+                  <h3>Çekici Barbie Baskısı</h3>
+                  <p>Canlı ve çarpıcı Barbie baskısı, bu takımı her yaş grubundan Barbie hayranları için mükemmel bir seçenek yapıyor.</p>
+                </div>
+                <div>
+                  <h3>Mükemmel Uyum</h3>
+                  <p>Farklı beden seçenekleri ile her vücut tipine uyum sağlar ve mükemmel bir uyum sunar.</p>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <h3>Kaliteli Malzeme</h3>
+                  <p>Yüksek kaliteli kumaştan üretilmiştir, uzun süreli kullanımlarda bile şeklini korur.</p>
+                </div>
+
+                <div>
+                  <h3>Esnekliği</h3>
+                  <p>Eşofman alt üst takım, esnekliği sayesinde hareket özgürlüğü sağlar, her türlü aktivitede size eşlik eder.</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <div>
+            <video autoPlay muted loop>
+             
+              <source src="video1.mp4" type="video/mp4" />
+           
+            </video>
+</div>
+        </div>
+
+        
+        <div className='sec-4'>
+          
+          
+          
+        </div>
+
+        <div className='sec-5'>
+
+        </div>
+
+        <div className='sec-6 container'>
+
+          <div className="main-title">
+            <h2>Sıkça sorulan sorular.</h2>
+          </div>
+
+          <div>
+            <div className='div2-sec-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5' >
+              <div>
+                <div>
+                  <h3>Bu ürünün beden seçenekleri nelerdir?</h3>
+                  <p>Bu ürün XS, S, M, L ve XL olmak üzere beş farklı beden seçeneği sunmaktadır.</p>
+                </div>
+                <div>
+                  <h3>Bu eşofman takımının rengi nedir?</h3>
+                  <p>Kadın Barbie Baskılı Sweatshirt Eşofman Alt Üst Takım, canlı ve çekici bir pembe rengindedir.</p>
+                </div>
+
+                <div>
+                  <h3>Kadın Barbie Baskılı Sweatshirt Eşofman Alt Üst Takımı nasıl temizlenmelidir?</h3>
+                  <p>Bu ürün, kalitesini korumak için sadece soğuk suyla yıkanmalı ve düşük sıcaklıkta kurutulmalıdır.</p>
+                </div>
+                
+              </div>
+
+              <div>
+                <div>
+                  <h3>Bu ürünün malzemesi nedir?</h3>
+                  <p>Bu ürün %100 pamuk malzemeden üretilmiştir ve cildi tahriş etmemek için en kaliteli kumaşlar kullanılmıştır.</p>
+                </div>
+                <div>
+                  <h3>Bu ürün ne tür bir baskıya sahip?</h3>
+                  <p>Bu ürün, popüler Barbie temasını yansıtan özel bir baskıya sahip.</p>
+                </div>
+
+                
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div className='sec-7'>
+          <a href="#top-1">Sepete Ekle</a>
+        </div>
+
+
+    </div>
+    </>
   )
 }
