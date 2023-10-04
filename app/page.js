@@ -127,20 +127,7 @@ export default function Home() {
             <h2>Ürün açıklaması</h2>
           </div>
 
-          {/* <div>
-            <ul>
-              <li>Bu ürün, Kadın Barbie Baskılı Sweatshirt Eşofman Alt-Üst Takımı adıyla tanımlanan, eğlenceli ve şık bir gardırop eklentisidir.</li>
-<<<<<<< HEAD
-              <li>Üst kısmı, Barbie logosuna sahip geniş bir baskıya sahip olan rahat bir sweatshirtten oluşmaktadır. Alt kısmında ise yumuşak ve esnek bir malzemeden yapılmış rahat bir eşofman bulunmaktadır.</li>
-=======
-              <li>Üst kısmı, Barbie logosuna sahip geniş bir baskıya sahip olan rahat bir sweatshirt ten oluşmaktadır. Alt kısmında ise yumuşak ve esnek bir malzemeden yapılmış rahat bir eşofman bulunmaktadır.</li>
->>>>>>> 8ffc2e809c1f50e2dd2d26710b2a70c28199d6f1
-              <li>Hem sweatshirt, hem de eşofman, cildi tahriş etmeyen, nefes alabilen ve mükemmel bir şekilde oturan yüksek kaliteli bir kumaştan yapılmıştır.</li>
-              <li>Bu set, hem iç mekanlarda rahatlıkla giyilebilir, hem de dışarı çıkarken mükemmel bir seçenek olabilir.</li>
-              <li>Barbie baskısı, bu takımı benzersiz ve şık bir seçim haline getirir. Üstelik, geniş bir beden yelpazesinde mevcuttur, böylece herkes kendi mükemmel uyumunu bulabilir.</li>
-              <li>Makinede yıkanabilir ve kolay bakım gerektirir.</li>
-            </ul>
-          </div> */}
+        
 
           <div className='div1-sec2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
             <div>
@@ -162,11 +149,11 @@ export default function Home() {
             <div>
               <h2>ÖZELLİKLER</h2>
               <ul>
-<<<<<<< HEAD
+
                 <li>Türkiyede üretildi.</li>
-=======
+
                 <li>Türkiye de üretildi.</li>
->>>>>>> 8ffc2e809c1f50e2dd2d26710b2a70c28199d6f1
+
                 <li>Siyah, Gri.</li>
                 <li>%100 Pamuk.</li>
               </ul>
