@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-ul{
+/* ul{
       list-style: circle;
-}
+} */
 
 :root {
   --main-color: #e84596;
@@ -216,7 +216,7 @@ justify-content: space-evenly;
 
         @keyframes slideInFromLeft {
           0% {
-            transform: translateX(300px);
+            transform: translateX(70px);
     
             opacity: 0;
     
@@ -277,6 +277,10 @@ justify-content: space-evenly;
 .div2-sec-1 h3{
 font-size: 43px;
   font-weight: bold;
+  background-image: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(232, 69, 144, 1) 62%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 .prices{
   display: flex;
@@ -305,9 +309,7 @@ display: flex;
   padding: 20px 0;
   font-size: 20px;
 }
-input#quantity {
-  width: 43px !important;
-}
+
 .div2-sec-1 form div button{
 
   padding: 15px 52px;
@@ -354,11 +356,45 @@ color: #ff0000;
   padding-left: 6px;
 }
 .div2-description div ul li {
-  padding: 5px;
+  padding: 2px;
       color: #464147;
 }
-.div2-description div {
+.div2-description div:hover::before {
+  width: 100%;
+  height: 100%;
 
+}
+
+.div2-description div::before {
+    content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      background-color: #ededed;
+      transition: .4s;
+      border-radius: 10px;
+      z-index: -1;
+}
+
+
+.div2-description div {
+background-color: #f6f5f5;
+  gap: 9px;
+  margin-bottom: 22px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 30px;
+  border: solid 4px white;
+  position: relative;
+  border-radius: 10px;
+  transition: .4s;
+  z-index: 1;
+ flex-direction: column;
 }
 
 .main-container::before {
@@ -425,7 +461,7 @@ animation: slideInFromLeft 1s ease-in-out;
 position: fixed;
   bottom: 33px;
   right: 14px;
-  z-index: 1000;
+  z-index: 3000;
 }
 
 .whatsapp-button img {
@@ -471,6 +507,7 @@ position: fixed;
   padding: 10px;
   border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    z-index: 1000;
 }
 .sec-7 a{
   padding: 10px 20px !important;
@@ -483,6 +520,13 @@ html {
 
 @media (max-width:768px) {
   
+
+  .sec-8 form {
+      min-width: 80% !important;
+     
+    }
+
+
 .product-name-1 h1 {
     font-size: 22px;
   
@@ -579,6 +623,45 @@ html {
 
 
 @media (max-width:480px) {
+
+.sec-8 form {
+    min-width: 90% !important;
+   
+  }
+
+  .div1-sec-1 {
+    
+      flex-direction: column;
+     
+    }
+
+             .image-container {
+               width: 100% !important;
+               height: 80vh;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+             }
+         .small-images-container {
+          
+           flex-direction: row;
+           overflow-x: auto;
+           height: 19%;
+          
+         }
+
+                 .div1-sec-1 {
+                 
+                   height: fit-content;
+                   
+                 }
+.image-container img {
+ 
+  min-height: 80vh !important;
+  max-width: 100%;
+ 
+}
+
   .product-name-1 h1 {
       font-size: 16px;
      
@@ -609,7 +692,7 @@ html {
 
 .main-container::before {
 
-  height: 143%;
+  height: 151%;
  
 }
 
@@ -664,3 +747,237 @@ height: 164%;
 
 }
 
+.sec-7 a:hover{
+  box-shadow: 0 0 10px #eb0678;
+  background-color:#eb0678 ;
+}
+
+.go-buy-button{
+  width: 100%;
+    text-align: center;
+    padding-top: 20px;
+}
+.go-buy-button a{
+padding: 13px 52px;
+  background-color: var(--main-color);
+  border-radius: 11px;
+}
+.go-buy-button a:hover {
+  box-shadow: 0 0 10px #eb0678;
+  background-color: #eb0678;
+}
+
+
+
+.div3-sec1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-weight: 500;
+  background-image: linear-gradient(to right, #e84596, #000000, #660056);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.image-container {
+  width: 80%;
+}
+.div2-sec2-image-container{
+  width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.div2-sec2-image-container img{
+max-height: 71vh;
+border-radius: 20px;
+}
+.div1-sec2 div ul li {
+display: flex;
+}
+.div1-sec2 div ul li svg#Layer_1 {
+  width: 40px;
+  height: 25px;
+  font-size: 29px;
+}
+
+
+.discount .form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 50%;
+  padding-bottom: 50px;
+  flex: 1;
+}
+
+
+
+@media (max-width: 991px) {
+  .discount .form {
+    flex-basis: 100%;
+    margin-top: 20px;
+  }
+
+  .image {
+    flex-basis: 100%;
+
+  }
+
+}
+.sec-8 form {
+min-width: 60%;
+  margin: 0 auto;
+  background-color: #ffffff4f;
+  padding: 20px;
+  border-radius: 5px;
+
+  box-shadow: 0 0px 34px var(--main-color);
+}
+
+.sec-8 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sec-8::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+
+  height: 118%;
+  background-color: #bbbbcdb3;
+  z-index: -1;
+  transform: skewY(-6deg);
+  transform-origin: top left;
+}
+
+
+
+.sec-8 form input {
+width: 100%;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  background-color: rgb(182 178 178 / 59%);
+  border: none;
+  outline: none;
+  transition: .5s;
+  caret-color: var(--main-color);
+  color: black;
+}
+.sec-8 form input:focus {
+  border-bottom: 1px solid var(--main-color);
+}
+
+.sec-8 form textarea {
+resize: none;
+  height: 113px;
+  width: 100%;
+  background-color: #c6c4c8;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 3px 6px;
+  border: none;
+  outline: none;
+}
+
+.sec-8 form input:focus {
+  outline: none;
+}
+
+.sec-8 form [type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: var(--main-color);
+  color: rgb(7, 6, 6);
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  transition: var(--main-transition);
+}
+
+.sec-8 form [type="submit"]:hover {
+  background-color:#EB0676;
+  box-shadow: 0 0 10px #EB0676;
+}
+select {
+  text-transform: none;
+  background-color: inherit;
+  text-align: center;
+}
+
+.sec-8 div:first-child,
+.sec-8 div:nth-child(2) {
+display: flex;
+  align-items: center;
+  background-color: #c6c4c8;
+  margin: 5px 0;
+  padding: 10px 7px;
+  border-radius: 7px;
+  justify-content: space-between;
+}
+
+.success-wrapper,
+.cancel-wrapper {
+  background-color: white;
+  min-height: 60vh;
+
+}
+
+.success,
+.cancel {
+  width: 100%;
+  margin: auto;
+  margin-top: 160px;
+  background-color: #dcdcdc;
+  padding: 50px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.success .icon {
+  color: green;
+  font-size: 40px;
+}
+
+.success h2 {
+  text-transform: capitalize;
+  margin-top: 15px 0px;
+  font-weight: 900;
+  font-size: 40px;
+  color: #324d67;
+}
+
+.success .email-msg {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cancel p {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.success .description {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  margin: 10px;
+  margin-top: 30px;
+}
+
+.success .description .email {
+  margin-left: 5px;
+  color: #f02d34;
+}
