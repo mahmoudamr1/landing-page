@@ -174,11 +174,19 @@ height: 10px;
   padding-top: 28px;
 }
 
-.image-container img{
+/* .image-container img{
   border-radius: 20px;
   height: 100%;
     max-width: 100%;
     animation: slideInFromTop 1s ease-in-out;
+} */
+
+.image-container img {
+  border-radius: 20px;
+  height: 100%;
+  max-height: 85vh !important;
+  max-width: 100%;
+  animation: slideInFromTop 1s ease-in-out;
 }
 
     @keyframes slideInFromTop {
@@ -499,16 +507,19 @@ position: fixed;
 .sec-7 {
 position: fixed;
   bottom: 0;
-  background-color: black;
+  background-color: #0000003b;
   color: white;
-  width: 100%;
-  /* height: 30px; */
+  width: 400px;
+
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   padding: 10px;
   border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    z-index: 1000;
+  border-top-right-radius: 20px;
+  z-index: 1000;
 }
+
 .sec-7 a{
   padding: 10px 20px !important;
     background-color: var(--main-color);
@@ -624,7 +635,9 @@ html {
 
 @media (max-width:480px) {
 
-
+.sec-7 {
+  width: 300px;
+}
   .sec-8 {
       
       padding: 20px 0 102px;
@@ -996,5 +1009,25 @@ display: flex;
 }
 
 .success button{
+
+}
+.slick-prev:before {
+ 
+  right: -6px !important;
+  position: absolute;
+  z-index: 1000;
+  color: black !important;
+}
+.slick-next:before{
+left: -6px !important;
+  position: absolute;
+  z-index: 1000;
+  color: black !important;
+}
+.slick-prev:before,
+.slick-next:before {
+  
+  top: 50%;
+  transform: translateY(-50%);
 
 }

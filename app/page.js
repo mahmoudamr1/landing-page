@@ -1,17 +1,32 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Component } from 'react';
 // import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { GiBeveledStar } from 'react-icons/gi';
 import { WiStars } from 'react-icons/wi';
 import { useRouter } from 'next/router';
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 
 
 export default function Home() {
 
- 
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 500,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    pauseOnHover: true
+    ,
+    fade: true
+  };
 
 
 
@@ -130,7 +145,46 @@ export default function Home() {
           <h1>kadın Barbie Oversize Eşofman Takımı</h1>
 </div>
 
+        
         <div className='sec-1 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
+          <div className='div1-sec-1'>
+
+            <Slider
+              { ...settings }
+              className="image-container"
+              beforeChange={ ( oldIndex, newIndex ) => setIndex( newIndex ) }
+            >
+              { images.map( ( image, i ) => (
+                <img
+                  src={ images[index] }
+                  alt=""
+                
+                  key={ i }
+                 
+                />
+              ) ) }
+            </Slider>
+          {/* <div className='image-container'>
+            <img src={ images[index] } alt="" />
+            </div> */}
+            
+
+          <div className="small-images-container">
+            { images.map( ( image, i ) => (
+              <img
+                src={ image }
+                alt=""
+                className={ i === index ? 'small-image selected-image' : 'small-image' }
+                key={ i }
+                onMouseEnter={ () => setIndex( i ) }
+              />
+            ) ) }
+            </div>
+            
+          </div>
+
+
+        {/* <div className='sec-1 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
           <div className='div1-sec-1'>
           <div className='image-container'>
             <img src={ images[index] } alt="" />
@@ -146,7 +200,7 @@ export default function Home() {
               />
             ) ) }
           </div>
-          </div>
+          </div> */}
             
           <div className='div2-sec-1'>
             <h3>kadın Barbie Oversize Eşofman Takımı</h3>
@@ -179,7 +233,7 @@ export default function Home() {
             <h2>Ürün açıklaması</h2>
           </div>
 
-
+       
 
           <div className='div1-sec2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
             <div>
@@ -202,7 +256,6 @@ export default function Home() {
               <h2>ÖZELLİKLER</h2>
               <ul>
                 <li>Türkiyede üretildi.</li>
-                <li>Türkiye de üretildi.</li>
                 <li>Siyah, Gri.</li>
                 <li>%100 Pamuk.</li>
               </ul>
@@ -419,78 +472,8 @@ export default function Home() {
 
 
 
-          {/* <form method="POST" 
-            id="form"
 
-            action="https://script.google.com/macros/s/AKfycbyNQI42_-0f-Q6epW7Be5O6NV1g7bgOt6lBFj_PqDARTdqrDfAY2fC1EK-LDT3FiPy4Gw/exec"
-            // action="https://script.google.com/macros/s/AKfycbyAheoJ1RhnSD8N0t5jTx6uU3dRpMFPKxqY9XJWFZADtUhRpwo5WtPlMtqjv1rBeIYmRQ/exec"
-          //  action="https://script.google.com/macros/s/AKfycbwBlKIKMr0NckNz-zk1mL2JhVnoVq9s7DAHsQ615gnPSMll5vY2bs8yjKSpwMF8R4ON/exec"
-          
-          >
-          
-            <div>
-              <label htmlFor="color">Renk:</label>
-              <select
-                id="color"
-                name="color"
-
-              >
-                <option value="black" style={ { backgroundColor: 'black' } }>Siyah</option>
-                <option value="gray" style={ { backgroundColor: 'gray' } }>Gri</option>
-              
-
-
-
-              </select>
-            </div>
-            <div>
-              <label htmlFor="size">Beden:</label>
-              <select
-                id="size"
-                name="size"
-
-              >
-                <option value="xs">XS</option>
-                <option value="s">S</option>
-                <option value="m">M</option>
-                <option value="l">L</option>
-                <option value="xl">XL</option>
-                <option value="2xl">2XL</option>
-                <option value="3xl">3XL</option>
-              </select>
-            </div>
-            <div>
-           
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min="1"
-                placeholder='Miktar'
-              />
-            </div>
-
-            <div>
-    
-              <input type="tel" id="phone" name="phone" placeholder='Telefon Numarası' />
-            </div>
-            <div>
-
-              <input type="text" id="address" name="address" placeholder='Adres' />
-            </div>
-            <div>
-             
-              <textarea id="additionalInfo" name="additionalInfo" placeholder='Ek Bilgi'></textarea>
-            </div>
-
-            <div >
-              <button type="submit" id='submit'>Sepete Ekle</button>
-            </div>
-          </form>
-
-      */}
-
-          
+      
           
 </div>
 
