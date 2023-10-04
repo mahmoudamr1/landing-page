@@ -624,6 +624,18 @@ html {
 
 @media (max-width:480px) {
 
+
+  .sec-8 {
+      
+      padding: 20px 0 102px;
+    }
+    
+.sec-8::before {
+   
+    height: 86% !important;
+   
+  }
+
 .sec-8 form {
     min-width: 90% !important;
    
@@ -757,12 +769,13 @@ height: 164%;
     text-align: center;
     padding-top: 20px;
 }
-.go-buy-button a{
+.go-buy-button a , .success button{
 padding: 13px 52px;
   background-color: var(--main-color);
   border-radius: 11px;
 }
-.go-buy-button a:hover {
+.go-buy-button a:hover ,
+.success button:hover{
   box-shadow: 0 0 10px #eb0678;
   background-color: #eb0678;
 }
@@ -890,7 +903,7 @@ resize: none;
   outline: none;
 }
 
-.sec-8 form [type="submit"] {
+.sec-8 form button {
   display: block;
   width: 100%;
   padding: 15px;
@@ -903,7 +916,7 @@ resize: none;
   transition: var(--main-transition);
 }
 
-.sec-8 form [type="submit"]:hover {
+.sec-8 form button:hover {
   background-color:#EB0676;
   box-shadow: 0 0 10px #EB0676;
 }
@@ -980,4 +993,8 @@ display: flex;
 .success .description .email {
   margin-left: 5px;
   color: #f02d34;
+}
+
+.success button{
+
 }

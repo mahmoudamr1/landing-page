@@ -5,13 +5,65 @@ import { useEffect, useState } from 'react';
 // import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { GiBeveledStar } from 'react-icons/gi';
 import { WiStars } from 'react-icons/wi';
-
+import { useRouter } from 'next/router';
 
 
 
 export default function Home() {
 
  
+
+
+
+
+
+  const [formData, setFormData] = useState( {
+    color: '',
+    size: '',
+    quantity: '',
+    phone: '',
+    address: '',
+    additionalInfo: '',
+  } );
+
+  const handleChange = ( e ) => {
+    const { name, value } = e.target;
+    setFormData( {
+      ...formData,
+      [name]: value,
+    } );
+  };
+
+  const handleSubmit = () => {
+    const formElement = document.getElementById( 'form' );
+    const formData = new FormData( formElement );
+
+    const xhr = new XMLHttpRequest();
+    xhr.open( 'POST', formElement.action, true );
+
+    xhr.onreadystatechange = function () {
+      if ( xhr.readyState === XMLHttpRequest.DONE ) {
+        if ( xhr.status === 200 ) {
+          console.log( 'تم إرسال البيانات بنجاح.' );
+         
+          window.location.href = '/success';
+         
+          // يمكنك إضافة أكواد هنا للتعامل مع الاستجابة بشكل مخصص إذا كان ذلك ضروريًا
+        } else {
+          console.error( 'حدث خطأ أثناء إرسال البيانات.' );
+          // يمكنك إضافة أكواد هنا للتعامل مع الأخطاء إذا كان ذلك ضروريًا
+        }
+      }
+    };
+
+    xhr.send( formData );
+  };
+
+
+
+
+
+
 
 
   useEffect( () => {
@@ -127,20 +179,7 @@ export default function Home() {
             <h2>Ürün açıklaması</h2>
           </div>
 
-          {/* <div>
-            <ul>
-              <li>Bu ürün, Kadın Barbie Baskılı Sweatshirt Eşofman Alt-Üst Takımı adıyla tanımlanan, eğlenceli ve şık bir gardırop eklentisidir.</li>
-<<<<<<< HEAD
-              <li>Üst kısmı, Barbie logosuna sahip geniş bir baskıya sahip olan rahat bir sweatshirtten oluşmaktadır. Alt kısmında ise yumuşak ve esnek bir malzemeden yapılmış rahat bir eşofman bulunmaktadır.</li>
-=======
-              <li>Üst kısmı, Barbie logosuna sahip geniş bir baskıya sahip olan rahat bir sweatshirt ten oluşmaktadır. Alt kısmında ise yumuşak ve esnek bir malzemeden yapılmış rahat bir eşofman bulunmaktadır.</li>
->>>>>>> 8ffc2e809c1f50e2dd2d26710b2a70c28199d6f1
-              <li>Hem sweatshirt, hem de eşofman, cildi tahriş etmeyen, nefes alabilen ve mükemmel bir şekilde oturan yüksek kaliteli bir kumaştan yapılmıştır.</li>
-              <li>Bu set, hem iç mekanlarda rahatlıkla giyilebilir, hem de dışarı çıkarken mükemmel bir seçenek olabilir.</li>
-              <li>Barbie baskısı, bu takımı benzersiz ve şık bir seçim haline getirir. Üstelik, geniş bir beden yelpazesinde mevcuttur, böylece herkes kendi mükemmel uyumunu bulabilir.</li>
-              <li>Makinede yıkanabilir ve kolay bakım gerektirir.</li>
-            </ul>
-          </div> */}
+
 
           <div className='div1-sec2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
             <div>
@@ -162,11 +201,8 @@ export default function Home() {
             <div>
               <h2>ÖZELLİKLER</h2>
               <ul>
-<<<<<<< HEAD
                 <li>Türkiyede üretildi.</li>
-=======
                 <li>Türkiye de üretildi.</li>
->>>>>>> 8ffc2e809c1f50e2dd2d26710b2a70c28199d6f1
                 <li>Siyah, Gri.</li>
                 <li>%100 Pamuk.</li>
               </ul>
@@ -290,12 +326,104 @@ export default function Home() {
         <div className='sec-7'>
           <a href="#form">Sepete Ekle</a>
         </div>
-        <div className='sec-8' id='form'>
+        <div className='sec-8'>
           
 
-          <form method="POST"
+          <form
+            method="POST"
+            action="https://script.google.com/macros/s/AKfycbwT8hOPHlvL1jGClpNSQN850hX8BARiM_VwegMKjmURloJ9ZG_VSY6HmytGSvAvgFaQNA/exec"
+            // action="https://script.google.com/macros/s/AKfycbyNQI42_-0f-Q6epW7Be5O6NV1g7bgOt6lBFj_PqDARTdqrDfAY2fC1EK-LDT3FiPy4Gw/exec"
             id="form"
-            action="https://script.google.com/macros/s/AKfycbyAheoJ1RhnSD8N0t5jTx6uU3dRpMFPKxqY9XJWFZADtUhRpwo5WtPlMtqjv1rBeIYmRQ/exec"
+          >
+            <div>
+              <label htmlFor="color">Renk:</label>
+              <select
+                id="color"
+                name="color"
+                onChange={ handleChange }
+                value={ formData.color }
+              >
+                <option value="black" style={ { backgroundColor: 'black' } }>
+                  Siyah
+                </option>
+                <option value="gray" style={ { backgroundColor: 'gray' } }>
+                  Gri
+                </option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="size">Beden:</label>
+              <select
+                id="size"
+                name="size"
+                onChange={ handleChange }
+                value={ formData.size }
+              >
+                <option value="xs">XS</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+                <option value="2xl">2XL</option>
+                <option value="3xl">3XL</option>
+              </select>
+            </div>
+            <div>
+              <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                placeholder="Miktar"
+                onChange={ handleChange }
+                value={ formData.quantity }
+              />
+            </div>
+            <div>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Telefon Numarası"
+                onChange={ handleChange }
+                value={ formData.phone }
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Adres"
+                onChange={ handleChange }
+                value={ formData.address }
+              />
+            </div>
+            <div>
+              <textarea
+                id="additionalInfo"
+                name="additionalInfo"
+                placeholder="Ek Bilgi"
+                onChange={ handleChange }
+                value={ formData.additionalInfo }
+              ></textarea>
+            </div>
+
+            <div>
+              <button type="button" onClick={ handleSubmit } id="submit">
+                Sepete Ekle
+              </button>
+            </div>
+          </form>
+
+
+
+
+          {/* <form method="POST" 
+            id="form"
+
+            action="https://script.google.com/macros/s/AKfycbyNQI42_-0f-Q6epW7Be5O6NV1g7bgOt6lBFj_PqDARTdqrDfAY2fC1EK-LDT3FiPy4Gw/exec"
+            // action="https://script.google.com/macros/s/AKfycbyAheoJ1RhnSD8N0t5jTx6uU3dRpMFPKxqY9XJWFZADtUhRpwo5WtPlMtqjv1rBeIYmRQ/exec"
           //  action="https://script.google.com/macros/s/AKfycbwBlKIKMr0NckNz-zk1mL2JhVnoVq9s7DAHsQ615gnPSMll5vY2bs8yjKSpwMF8R4ON/exec"
           
           >
@@ -343,15 +471,15 @@ export default function Home() {
             </div>
 
             <div>
-              {/* <label htmlFor="phone">Telefon Numarası:</label> */}
+    
               <input type="tel" id="phone" name="phone" placeholder='Telefon Numarası' />
             </div>
             <div>
-              {/* <label htmlFor="address">Adres:</label> */}
+
               <input type="text" id="address" name="address" placeholder='Adres' />
             </div>
             <div>
-              {/* <label htmlFor="additionalInfo">Ek Bilgi:</label> */}
+             
               <textarea id="additionalInfo" name="additionalInfo" placeholder='Ek Bilgi'></textarea>
             </div>
 
@@ -360,6 +488,9 @@ export default function Home() {
             </div>
           </form>
 
+      */}
+
+          
           
 </div>
 
