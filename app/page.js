@@ -1,14 +1,17 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link';
-import { useEffect, useState, Component } from 'react';
+import { useEffect, useState, Component, Suspense } from 'react';
 // import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { GiBeveledStar } from 'react-icons/gi';
+import { PiShootingStarLight } from 'react-icons/pi';
+
 import { WiStars } from 'react-icons/wi';
 import { useRouter } from 'next/router';
 import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 
 
 
@@ -20,7 +23,7 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 500,
+    speed: 200,
     autoplaySpeed: 3000,
     cssEase: "linear",
     pauseOnHover: true
@@ -63,10 +66,10 @@ export default function Home() {
          
           window.location.href = '/success';
          
-          // يمكنك إضافة أكواد هنا للتعامل مع الاستجابة بشكل مخصص إذا كان ذلك ضروريًا
+       
         } else {
           console.error( 'حدث خطأ أثناء إرسال البيانات.' );
-          // يمكنك إضافة أكواد هنا للتعامل مع الأخطاء إذا كان ذلك ضروريًا
+        
         }
       }
     };
@@ -84,7 +87,7 @@ export default function Home() {
   useEffect( () => {
 
 
-    // تخزين الدالة المستخدمة عند إضافة الحدث
+   
     const handleScroll = () => {
       if ( window.pageYOffset > 200 ) {
         sec7.style.display = "block !important";
@@ -93,14 +96,14 @@ export default function Home() {
       }
     };
     const sec7 = document.querySelector( '.sec-7' );
-    // إضافة الحدث واستخدام الدالة المخزنة
+
     window.addEventListener( "scroll", handleScroll );
    
 
   
-    // تنظيف الحدث عند تفريغ المكون
+ 
     return () => {
-      // إزالة الحدث باستخدام نفس الدالة المستخدمة
+   
       window.removeEventListener( "scroll", handleScroll );
     };
   }, [] );
@@ -113,29 +116,34 @@ export default function Home() {
 
   const images = [
     
-    'img2.avif',
-    'img1.avif',
-    'img3.avif',
-    'img4.avif',
-    'img5.avif',
-    'img6.avif',
-    'img7.avif',
-    'img8.jpg',
-    'img9.jpg',
-    'img10.jpg',
-    'img11.jpg',
-    'img12.jpg',
-    'img13.jpg',
-    'img14.jpg',
-    'img15.jpg',
-    'img16.jpg',
-    'img17.jpg',
+    '/img2.avif',
+    '/img1.avif',
+    '/img3.avif',
+    '/img4.avif',
+    '/img5.avif',
+    '/img6.avif',
+    '/img7.avif',
+    '/img8.jpg',
+    '/img9.jpg',
+    '/img10.jpg',
+    '/img11.jpg',
+    '/img12.jpg',
+    '/img13.jpg',
+    '/img14.jpg',
+    '/img15.jpg',
+    '/img16.jpg',
+    '/img17.jpg',
   ];
   return (
     <>
       <div class="whatsapp-button">
         <a href="https://wa.me/+905515882186" target="_blank">
-          <img src="whatsapp1.png" alt="WhatsApp" />
+          <Image
+            src="/whatsapp1.png"
+            alt="WhatsApp"
+            width={ 100 }
+            height={100}
+          />
         </a>
       </div>
 
@@ -148,22 +156,30 @@ export default function Home() {
         
         <div className='sec-1 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
           <div className='div1-sec-1'>
-
+       
             <Slider
               { ...settings }
               className="image-container"
               beforeChange={ ( oldIndex, newIndex ) => setIndex( newIndex ) }
             >
               { images.map( ( image, i ) => (
-                <img
+                <Image
                   src={ images[index] }
-                  alt=""
-                
+                  alt="product image"
+                  width={800}
+                  height={1200}
                   key={ i }
-                 
+                  priority={ true }
+                  quality={ 100 }
+                  blurDataURL={`data:img2/avif`}
+                  placeholder='blur'
+                  loading='eager'
+
+                //  fill
                 />
               ) ) }
             </Slider>
+     
           {/* <div className='image-container'>
             <img src={ images[index] } alt="" />
             </div> */}
@@ -171,37 +187,20 @@ export default function Home() {
 
           <div className="small-images-container">
             { images.map( ( image, i ) => (
-              <img
+              <Image
                 src={ image }
                 alt=""
                 className={ i === index ? 'small-image selected-image' : 'small-image' }
                 key={ i }
                 onMouseEnter={ () => setIndex( i ) }
+                width={ 800 }
+                height={ 1200 }
               />
             ) ) }
             </div>
             
           </div>
 
-
-        {/* <div className='sec-1 container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
-          <div className='div1-sec-1'>
-          <div className='image-container'>
-            <img src={ images[index] } alt="" />
-          </div>
-          <div className="small-images-container">
-            { images.map( ( image, i ) => (
-              <img
-                src={ image }
-                alt=""
-                className={ i === index ? 'small-image selected-image' : 'small-image' }
-                key={ i }
-                onMouseEnter={ () => setIndex( i ) }
-              />
-            ) ) }
-          </div>
-          </div> */}
-            
           <div className='div2-sec-1'>
             <h3>kadın Barbie Oversize Eşofman Takımı</h3>
             <div className='prices'>
@@ -246,7 +245,7 @@ export default function Home() {
                 <li><div><WiStars /></div> Makinede yıkanabilir ve kolay bakım gerektirir.</li>
               </ul>
             </div>
-            <div className='div2-sec2-image-container'><img src="img15.jpg" alt="" /></div>
+            <div className='div2-sec2-image-container'><Image src="/img15.jpg" alt="" width={800} height={1200}/></div>
           </div>
 
 
@@ -281,7 +280,7 @@ export default function Home() {
         <div className='sec-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 '>
           <div> 
             <h2>Niçin hayperglam büyük beden hoodie?</h2>
-          <p>Ceviz ahşap kart tepsisi, bir yığın Focus kartını mükemmel bir şekilde uyacak şekilde hassas bir şekilde işlenmiştir.</p>
+       
            
             <div className='div2-sec-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5' >
               <div>
@@ -324,9 +323,29 @@ export default function Home() {
         </div>
 
         
-        <div className='sec-4'>
+        <div className='sec-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5'>
+        
+          <div className='image-container-sec4'>
+            <Image src="/img18.png" alt="image"
+              width={ 800 }
+              height={ 1200 }
+              quality={ 100 }
+            />
+          </div>
           
-          
+          <div className='div2-sec4'>
+
+            <h2>Barbie Kadınlar için Giysiler: Moda ve Rahatlık</h2>
+            <div className='flex gap-2'>
+              <div className='svg-div2-sec4'><PiShootingStarLight/></div>
+            <p>Moda dünyasında, Barbie kadınlar için giyim koleksiyonu, moda ve rahatlığı olağanüstü bir şekilde birleştiren bir seçenek olarak karşımıza çıkıyor. Bu giysiler, moda dünyasının en iyisini ve aynı zamanda rahatlığı deneyimleme fırsatı sunuyor.</p>
+            </div>
+            <div className='flex gap-2 pt-3'>
+              <div className='svg-div2-sec4'><PiShootingStarLight/></div>
+              <p>Bizimle Barbie Kadınlar için giysilerin şıklık ve rahatlıkla harmanlandığı yeni bir dünyayı keşfedin. Bu giysiler, çağdaş tasarımların ve özgünlüğün muhteşem bir karışımı ile sizin zarifliğinizi olağanüstü bir şekilde vurgulamaktadır.</p>
+            </div>
+
+          </div>
           
         </div>
 
