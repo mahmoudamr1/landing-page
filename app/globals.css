@@ -272,10 +272,11 @@ justify-content: space-evenly;
   display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #e8459652;
+    /* background-color: #e84596; */
+        background-color: #e8459652;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-      font-weight: bold;
+    font-weight: bold;
 }
 .product-name-1 h1{
   font-size: 30px;
@@ -355,6 +356,7 @@ display: flex;
 }
 
 .sec-2 div ul li {
+  color: white;
     padding: 11px 0;
 animation: slideInFromTop 1s ease-in-out;
 
@@ -781,7 +783,7 @@ height: 164%;
 }
 
 .sec-6::before {
-      height: 121%;
+      height: 74%;
 }
 
 .whatsapp-button img {
@@ -1059,7 +1061,7 @@ left: -6px !important;
   overflow-x: hidden;
 }
 .image-container-sec4{
-  background-color: #880000;
+background-color: #ffd3d3;
     border-radius: 50%;
     max-height: 90vh;
     overflow: hidden;
@@ -1106,28 +1108,32 @@ font-size: 23px;
 }
 .sec-2::before {
   
-  background-color: #E66D3C !important;
+  background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%) !important;
+  /* background-color: #E66D3C !important; */
  
 }
 .sec-3::before {
  
-  background-color: #FCC54E !important;
+  background: radial-gradient(circle, rgba(252, 197, 78, 1) 44%, rgba(232, 69, 150, 1) 100%) !important;
+  /* background-color: #FCC54E !important; */
  
 }
 .sec-4::before {
  
-  background-color: #E6E33C !important;
+  background: radial-gradient(circle, rgba(255, 205, 178, 1) 0%, rgba(229, 152, 155, 1) 69%) !important;
+  /* background-color: #E6E33C !important; */
  
 }
 
 .sec-6::before {
  
-  background-color: #35E4FC !important; 
+  background: radial-gradient(circle, rgba(241, 250, 238, 1) 0%, rgba(216, 213, 221, 1) 66%) !important;
+  /* background-color: #35E4FC !important;  */
  
 }
 .sec-8::before {
-   
-    background-color: #EDA7C2 !important;
+  background: linear-gradient(274deg, rgba(255, 230, 109, 1) 51%, rgba(255, 107, 107, 1) 76%) !important;
+    /* background-color: #EDA7C2 !important; */
     z-index: -2;
   
 }
