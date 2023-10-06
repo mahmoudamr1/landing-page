@@ -23,7 +23,7 @@ export default function Home() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 200,
+    speed: 100,
     autoplaySpeed: 3000,
     cssEase: "linear",
     pauseOnHover: true
